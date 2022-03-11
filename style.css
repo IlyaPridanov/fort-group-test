@@ -1,0 +1,278 @@
+/* global */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    color: black;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* block */
+
+.block {
+  max-width: 1960px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 15.3vw;
+  grid-column-gap: 15px;
+}
+
+@media screen and (min-width: 1920px) {
+  .block {
+    grid-template-columns: 1fr 300px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .block {
+    padding: 0 10px;
+    grid-template-columns: 1fr 20vw;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .block {
+    display: block;
+  }
+}
+
+.block__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+
+  order: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .block__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.block__column {
+  order: 1;
+}
+
+/* card */
+.card {
+  position: relative;
+  padding: 10px;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.card__img {
+  width: 100%;
+  height: 250px;
+}
+
+@media screen and (max-width: 1024px) {
+  .card__img {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .card__img {
+    height: 120px;
+  }
+}
+
+.card__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.card__caption {
+  margin: 25px 0 10px;
+
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .card__caption {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card__caption {
+    margin: 15px 0 5px;
+
+    font-size: 18px;
+  }
+}
+
+.card__close {
+  appearance: none;
+  padding: 0;
+  outline: none;
+
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+
+  font-size: 15px;
+  line-height: 1;
+
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+}
+
+/* select */
+
+.select {
+  position: relative;
+
+  width: 100%;
+}
+
+.select__value {
+  width: 100%;
+  padding: 7px;
+
+  font-size: 16px;
+
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+@media screen and (max-width: 768px) {
+  .select__value {
+    font-size: 14px;
+  }
+}
+
+.select__value.active {
+  border-radius: 2px 2px 0 0;
+}
+
+.select__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  border-radius: 0 0 2px 2px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-top: none;
+}
+
+@media screen and (max-width: 576px) {
+  .select__list {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 2;
+
+    width: 100%;
+
+    background-color: #fff;
+  }
+}
+
+.select__item {
+  cursor: pointer;
+  padding: 7px;
+
+  font-size: 16px;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.select__item:last-child {
+  border-bottom: none;
+}
+
+@media screen and (max-width: 768px) {
+  .select__item {
+    font-size: 14px;
+  }
+}
+
+/* popup */
+
+.popup {
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  padding: 15px;
+
+  font-size: 20px;
+  text-transform: uppercase;
+
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .popup {
+    font-size: 17px;
+  }
+}
