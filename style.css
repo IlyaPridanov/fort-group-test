@@ -273,7 +273,6 @@ img {
 }
 
 .popup.active {
-  transition: all 0.5s ease-in;
   opacity: 1;
   z-index: 2;
 }
