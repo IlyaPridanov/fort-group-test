@@ -48,7 +48,7 @@ let cardFlag = {
 
 const startBuild = (dataStart) => {
   // Построение
-  const root = document.querySelector('#root');
+  const root = document.querySelector("#root");
 
   const build = (data) => {
     const selectItem = () => {
@@ -107,79 +107,78 @@ const startBuild = (dataStart) => {
 
   const getPopup = () => {
     const popup = document.querySelector(".popup");
-    popup.classList.add('active');
+    popup.classList.add("active");
 
     setTimeout(() => {
-      popup.classList.remove('active');
+      popup.classList.remove("active");
     }, 700);
   }
+
+  // Переключение карточек
 
   let cardCloseBtn = document.querySelectorAll(".card__close");
   let selectItem = document.querySelectorAll(".select__item");
 
-  // Удаление карточки
-
-  const closeCard = function () {
+  const toggleCard = function () {
     let element = this;
-    let numberCard = element.parentElement.dataset.card;
+    let numberCard;
+
+    if (element.dataset.card) {
+      numberCard = element.dataset.card;
+    } else {
+      numberCard = element.parentElement.dataset.card;
+    }
+
     cardCloseBtn.forEach(element => {
-      element.removeEventListener('click', closeCard);
+      element.removeEventListener("click", toggleCard);
     });
     selectItem.forEach(element => {
-      element.removeEventListener('click', closeCard);
+      element.removeEventListener("click", toggleCard);
     });
+
     cardFlag[numberCard] = !cardFlag[numberCard];
+
     while (root.firstChild) {
       root.removeChild(root.firstChild);
     }
+
     build(dataStart);
-    getPopup();
+
+    if (!cardFlag[numberCard]) {
+      getPopup();
+    }
+
     cardCloseBtn = document.querySelectorAll(".card__close");
     selectItem = document.querySelectorAll(".select__item");
+
+    const select = document.querySelector(".select");
+    if (selectItem.length === 0) {
+      select.style.opacity = "0";
+    } else {
+      select.style.opacity = "1";
+    }
+    
     cardListener();
     selectListener();
   }
 
   function cardListener () {
     cardCloseBtn.forEach(element => {
-      element.addEventListener('click', closeCard);
+      element.addEventListener("click", toggleCard);
+    });
+  }
+
+  function selectListener () {
+    selectItem.forEach(element => {
+      element.addEventListener("click", toggleCard);
     });
   }
 
   cardListener();
-
-  // Добавление карточки
-
-  const openCard = function () {
-    let element = this;
-    let numberCard = element.dataset.card;
-    selectItem.forEach(element => {
-      element.removeEventListener('click', closeCard);
-    });
-    cardCloseBtn.forEach(element => {
-      element.removeEventListener('click', closeCard);
-    });
-    cardFlag[numberCard] = !cardFlag[numberCard];
-    while (root.firstChild) {
-      root.removeChild(root.firstChild);
-    }
-    build(dataStart);
-    cardCloseBtn = document.querySelectorAll(".card__close");
-    selectItem = document.querySelectorAll(".select__item");
-    selectListener();
-    cardListener();
-  }
-  
-  function selectListener () {
-    selectItem.forEach(element => {
-      element.addEventListener('click', openCard);
-    });
-  }
-
   selectListener();
 }
 
-fetch("./data.json")
+fetch("./script/data.json")
   .then(response => response.json())
   .then(json => startBuild(json))
   .catch(() => startBuild(DATA_ERROR));
