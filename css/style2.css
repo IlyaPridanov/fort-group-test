@@ -65,11 +65,12 @@ img {
 }
 
 .filter__value {
+  overflow-x: auto;
   cursor: pointer;
 
   max-width: 786px;
   width: 100%;
-  padding: 8px 13px;
+  padding: 6px 20px 6px 13px;
   display: flex;
   align-items: center;
 
@@ -92,6 +93,7 @@ img {
 
 .filter__value .text {
   flex: 1 0 auto;
+  padding-right: 8px;
 }
 
 .filter__value .arrow {
@@ -113,7 +115,7 @@ img {
 .filter__block {
   position: absolute;
   z-index: 2;
-  top: 100%;
+  top: 102%;
   left: 0;
 
   width: 100%;
@@ -140,8 +142,26 @@ img {
 }
 
 .filter__column-tabs {
+  position: relative;
+
   flex: 1 0 auto;
-  padding: 9px 20px 6px;
+  padding: 9px 8px 0 18px;
+}
+
+.filter__column-tabs::before {
+  content: "";
+  pointer-events: none;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+
+  display: block;
+  width: calc(100% - 28px);
+  height: 30px;
+
+  background-image: linear-gradient(to top, #ffffff, rgba(256, 256, 256, 0));
 }
 
 .filter__btn {
@@ -154,8 +174,8 @@ img {
 
   display: flex;
   align-items: center;
-  margin-bottom: 1px;
-  padding: 18px 20px;
+  margin-bottom: 2px;
+  padding: 20px;
   width: 100%;
 
   font-size: 18px;
@@ -199,8 +219,35 @@ img {
 }
 
 .filter__scroll {
-  height: 220px;
-  padding-right: 12px;
+  position: relative;
+  overflow: hidden;
+
+  height: 225px;
+  padding-right: 20px;
+}
+
+.filter__scroll:not(.ps--active-y) .ps__rail-y {
+  background: none;
+}
+
+.filter__scroll .ps__rail-y {
+  position: absolute;
+  left: auto !important;
+  right: 0;
+
+  width: 6px;
+}
+
+.filter__scroll .ps__thumb-y {
+  cursor: pointer;
+
+  position: absolute;
+  right: 0;
+
+  width: 100%;
+
+  background-color: #e8e8e8;
+  border-radius: 2px;
 }
 
 .filter__tab-block {
@@ -208,16 +255,14 @@ img {
 }
 
 .filter__tab-block.open {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .filter__radio {
   display: block;
-  margin-bottom: 5px;
-}
-
-.filter__radio:last-child {
-  margin-bottom: 0;
+  margin-right: 9px;
 }
 
 .filter__radio input:checked + span {
@@ -227,9 +272,11 @@ img {
 }
 
 .filter__radio input:checked + span::before {
-  height: 8px;
+  left: 3px;
+  width: 9px;
+  height: 13px;
 
-  transform: rotate(45deg) translateY(-100%);
+  transform: rotate(46deg) translateY(-100%);
   transition: all 0.5s ease-in;
 }
 
@@ -237,7 +284,7 @@ img {
   position: relative;
   
   display: block;
-  padding: 7px 10px 7px 31px;
+  padding: 7px 10px 6px 34px;
 
   font-size: 14px;
   line-height: 1.2;
@@ -249,11 +296,11 @@ img {
   content: "";
   position: absolute;
   top: 50%;
-  left: 5px;
+  left: 13px;
 
   display: block;
-  width: 5px;
-  height: 5px;
+  width: 7px;
+  height: 7px;
 
   border-right: 1px solid #ffffff; 
   border-bottom: 1px solid #ffffff; 
@@ -273,7 +320,9 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 11px;
+  margin-right: 34px;
+  margin-top: auto;
 }
 
 .filter__row-number img {
@@ -339,11 +388,84 @@ img {
 }
 
 .filter__minmax {
+  margin-top: 18px;
+  margin-right: 18px;
+  margin-bottom: auto;
+
   text-align: center;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
 }
 
 .filter__minmax span {
-  margin: 0 7px;
+  margin: 0 4px;
+}
+
+.filter__minmax small {
+  font-size: 14px;
+}
+
+@media screen and (max-width:768px) {
+  .filter__value {
+    font-size: 14px;
+  }
+
+  .filter__btn {
+    font-size: 14px;
+  }
+
+  .filter__minmax {
+    font-size: 14px;
+  }
+
+  .filter__scroll {
+    height: 210px;
+  }
+}
+
+@media screen and (max-width:576px) {
+  .container {
+    padding: 5px;
+  }
+
+  .filter__btn {
+    padding: 8px;
+  }
+
+  .filter__btn.filled::before {
+    border-left-width: 5px;
+    border-top-width: 7px;
+    border-bottom-width: 7px;
+  }
+
+  .filter__column-btn {
+    flex-basis: 120px;
+  }
+
+  .filter__column-tabs {
+    padding: 4px 4px 0 4px;
+  }
+
+  .filter__row-number {
+    flex-direction: column;
+    margin-right: 0;
+  }
+
+  .filter__radio {
+    margin-right: 0;
+  }
+
+  .filter__block {
+    overflow-x: auto;
+  }
+
+  .filter__number {
+    width: 67px;
+    height: 28px;
+    margin: 0;
+    padding: 0;
+    margin-top: 8px;
+
+    font-size: 14px;
+  }
 }

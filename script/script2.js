@@ -64,3 +64,20 @@ filterBtn.forEach((btn) => {
     })
   })
 })
+
+// scroll
+
+function scroll () {
+  const container = document.querySelectorAll('.filter__scroll');
+  container.forEach((item) => {
+    const ps = new PerfectScrollbar(
+        item,
+        {
+          wheelPropagation: false,
+        }
+    );
+    ps.update();
+  });
+};
+
+scroll();

@@ -10,20 +10,20 @@
 <body>
   <div class="container">
     <div class="filter">
-      <div class="filter__value active">
+      <div class="filter__value">
         <span class="text">Выберите нужные параметры</span>
         <span class="arrow"></span>
       </div>
-      <div class="filter__block active">
+      <div class="filter__block">
         <div class="filter__column-btn">
-          <button class="filter__btn" type="button" data-tab="diameter">Диаметр трубы</button>
-          <button class="filter__btn open" type="button" data-tab="type">Тип изделия</button>
+          <button class="filter__btn open" type="button" data-tab="diameter">Диаметр трубы</button>
+          <button class="filter__btn" type="button" data-tab="type">Тип изделия</button>
           <button class="filter__btn" type="button" data-tab="application">Применение</button>
           <button class="filter__btn" type="button" data-tab="other">Другое</button>
         </div>
         <div class="filter__column-tabs">
           <div class="filter__scroll">
-            <div class="filter__tab-block" data-tab="diameter">
+            <div class="filter__tab-block open" data-tab="diameter">
               <div class="filter__row-number">
                 <img src="img/diameter.png" alt="diameter">
                 <input class="filter__number" type="number" value="14" min="4" max="98" step="1" name="diameter">
@@ -37,7 +37,7 @@
                 <span><small>mаx.</small> 98 мм</span>
               </div>
             </div>
-            <div class="filter__tab-block open" data-tab="type">
+            <div class="filter__tab-block" data-tab="type">
               <label class="filter__radio">
                 <input class="visually-hidden" type="radio" name="type-radio" value="Внутренние">
                 <span>Внутренние</span>
@@ -161,6 +161,7 @@
     </div>
 
   </div>
+  <script src="script/perfect-scrollbar.js"></script>
   <script src="script/script2.js"></script>
 </body>
 </html>
